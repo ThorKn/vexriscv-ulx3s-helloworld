@@ -1,0 +1,1480 @@
+	.file	"main.c"
+	.option nopic
+	.attribute arch, "rv32i2p0"
+	.attribute unaligned_access, 0
+	.attribute stack_align, 16
+	.text
+.Ltext0:
+	.cfi_sections	.debug_frame
+	.align	2
+	.globl	print
+	.type	print, @function
+print:
+.LFB7:
+	.file 1 "src/main.c"
+	.loc 1 6 27
+	.cfi_startproc
+.LVL0:
+	.loc 1 7 2
+.LBB10:
+.LBB11:
+.LBB12:
+.LBB13:
+	.file 2 "src/uart.h"
+	.loc 2 24 13 is_stmt 0
+	li	a3,-268369920
+.L2:
+.LBE13:
+.LBE12:
+.LBE11:
+.LBE10:
+	.loc 1 7 8
+	lbu	a4,0(a0)
+	.loc 1 7 7
+	bne	a4,zero,.L3
+	.loc 1 11 1
+	ret
+.L3:
+.LBB17:
+.LBB16:
+	.loc 2 31 41 is_stmt 1
+.LVL1:
+.LBB15:
+.LBB14:
+	.loc 2 24 2
+	.loc 2 24 13 is_stmt 0
+	lw	a5,4(a3)
+.LVL2:
+	.loc 2 24 22
+	srli	a5,a5,16
+	.loc 2 24 29
+	andi	a5,a5,255
+.LBE14:
+.LBE15:
+	.loc 2 31 7
+	beq	a5,zero,.L3
+	.loc 2 32 2 is_stmt 1
+	.loc 2 32 12 is_stmt 0
+	sw	a4,0(a3)
+.LBE16:
+.LBE17:
+	.loc 1 9 3 is_stmt 1
+	.loc 1 9 6 is_stmt 0
+	addi	a0,a0,1
+.LVL3:
+	j	.L2
+	.cfi_endproc
+.LFE7:
+	.size	print, .-print
+	.align	2
+	.globl	println
+	.type	println, @function
+println:
+.LFB8:
+	.loc 1 12 29 is_stmt 1
+	.cfi_startproc
+.LVL4:
+	.loc 1 13 2
+	.loc 1 12 29 is_stmt 0
+	addi	sp,sp,-16
+	.cfi_def_cfa_offset 16
+	sw	ra,12(sp)
+	.cfi_offset 1, -4
+	.loc 1 13 2
+	call	print
+.LVL5:
+	.loc 1 14 2 is_stmt 1
+.LBB22:
+.LBB23:
+.LBB24:
+.LBB25:
+	.loc 2 24 13 is_stmt 0
+	li	a4,-268369920
+.L8:
+.LBE25:
+.LBE24:
+	.loc 2 31 41 is_stmt 1
+.LVL6:
+.LBB27:
+.LBB26:
+	.loc 2 24 2
+	.loc 2 24 13 is_stmt 0
+	lw	a5,4(a4)
+.LVL7:
+	.loc 2 24 22
+	srli	a5,a5,16
+	.loc 2 24 29
+	andi	a5,a5,255
+.LBE26:
+.LBE27:
+	.loc 2 31 7
+	beq	a5,zero,.L8
+	.loc 2 32 2 is_stmt 1
+	.loc 2 32 12 is_stmt 0
+	li	a5,10
+	sw	a5,0(a4)
+.LVL8:
+.LBE23:
+.LBE22:
+	.loc 1 15 1
+	lw	ra,12(sp)
+	.cfi_restore 1
+	addi	sp,sp,16
+	.cfi_def_cfa_offset 0
+	jr	ra
+	.cfi_endproc
+.LFE8:
+	.size	println, .-println
+	.align	2
+	.globl	delay
+	.type	delay, @function
+delay:
+.LFB9:
+	.loc 1 17 27 is_stmt 1
+	.cfi_startproc
+.LVL9:
+	.loc 1 18 2
+.LBB28:
+	.loc 1 18 6
+	.loc 1 18 10 is_stmt 0
+	li	a5,0
+.LBB29:
+	.loc 1 19 19
+	li	a4,-268435456
+.LVL10:
+.L13:
+.LBE29:
+	.loc 1 18 2 discriminator 1
+	bne	a5,a0,.L14
+.LBE28:
+	.loc 1 21 1
+	ret
+.L14:
+.LBB31:
+.LBB30:
+	.loc 1 19 3 is_stmt 1 discriminator 3
+	.loc 1 19 19 is_stmt 0 discriminator 3
+	lw	a3,4(a4)
+.LBE30:
+	.loc 1 18 23 discriminator 3
+	addi	a5,a5,1
+.LVL11:
+	j	.L13
+.LBE31:
+	.cfi_endproc
+.LFE9:
+	.size	delay, .-delay
+	.section	.text.startup,"ax",@progbits
+	.align	2
+	.globl	main
+	.type	main, @function
+main:
+.LFB10:
+	.loc 1 23 13 is_stmt 1
+	.cfi_startproc
+	.loc 1 24 5
+	.loc 1 23 13 is_stmt 0
+	addi	sp,sp,-32
+	.cfi_def_cfa_offset 32
+	sw	s0,24(sp)
+	sw	s1,20(sp)
+	sw	s2,16(sp)
+	sw	s3,12(sp)
+	sw	s4,8(sp)
+	sw	s5,4(sp)
+	sw	ra,28(sp)
+	.cfi_offset 8, -8
+	.cfi_offset 9, -12
+	.cfi_offset 18, -16
+	.cfi_offset 19, -20
+	.cfi_offset 20, -24
+	.cfi_offset 21, -28
+	.cfi_offset 1, -4
+	.loc 1 24 27
+	li	a5,-268435456
+	li	a4,15
+	sw	a4,8(a5)
+	.loc 1 25 2 is_stmt 1
+	.loc 1 26 5 is_stmt 0
+	lui	a0,%hi(.LC0)
+	.loc 1 25 17
+	li	a4,1
+	sw	a4,4(a5)
+	.loc 1 26 5 is_stmt 1
+	addi	a0,a0,%lo(.LC0)
+.LBB32:
+	.loc 1 32 7 is_stmt 0
+	li	s0,1998848
+.LBE32:
+	.loc 1 26 5
+	call	println
+.LVL12:
+	.loc 1 27 5 is_stmt 1
+	.loc 1 28 2
+.LBB33:
+	.loc 1 31 22 is_stmt 0
+	li	s1,-268435456
+	li	s5,1
+	.loc 1 32 7
+	addi	s0,s0,1152
+	.loc 1 31 22
+	li	s2,2
+	li	s3,4
+.LBE33:
+.LBB34:
+	.loc 1 35 19
+	li	s4,8
+.L16:
+.LBE34:
+	.loc 1 29 5 is_stmt 1
+	.loc 1 30 6
+.LBB35:
+	.loc 1 30 10
+.LVL13:
+	.loc 1 31 7
+	.loc 1 32 7 is_stmt 0
+	mv	a0,s0
+	.loc 1 31 22
+	sw	s5,4(s1)
+	.loc 1 32 7 is_stmt 1
+	call	delay
+.LVL14:
+	.loc 1 31 7
+	.loc 1 32 7 is_stmt 0
+	mv	a0,s0
+	.loc 1 31 22
+	sw	s2,4(s1)
+	.loc 1 32 7 is_stmt 1
+	call	delay
+.LVL15:
+	.loc 1 31 7
+	.loc 1 32 7 is_stmt 0
+	mv	a0,s0
+	.loc 1 31 22
+	sw	s3,4(s1)
+	.loc 1 32 7 is_stmt 1
+	call	delay
+.LVL16:
+.LBE35:
+.LBB36:
+	.loc 1 35 4
+	.loc 1 36 4 is_stmt 0
+	mv	a0,s0
+	.loc 1 35 19
+	sw	s4,4(s1)
+	.loc 1 36 4 is_stmt 1
+	call	delay
+.LVL17:
+	.loc 1 35 4
+	.loc 1 36 4 is_stmt 0
+	mv	a0,s0
+	.loc 1 35 19
+	sw	s3,4(s1)
+	.loc 1 36 4 is_stmt 1
+	call	delay
+.LVL18:
+	.loc 1 35 4
+	.loc 1 36 4 is_stmt 0
+	mv	a0,s0
+	.loc 1 35 19
+	sw	s2,4(s1)
+	.loc 1 36 4 is_stmt 1
+	call	delay
+.LVL19:
+	j	.L16
+.LBE36:
+	.cfi_endproc
+.LFE10:
+	.size	main, .-main
+	.text
+	.align	2
+	.globl	irqCallback
+	.type	irqCallback, @function
+irqCallback:
+.LFB11:
+	.loc 1 41 19
+	.cfi_startproc
+	.loc 1 42 1
+	ret
+	.cfi_endproc
+.LFE11:
+	.size	irqCallback, .-irqCallback
+	.section	.rodata.str1.4,"aMS",@progbits,1
+	.align	2
+.LC0:
+	.string	"hello world arty a7 v1"
+	.text
+.Letext0:
+	.file 3 "/opt/riscv/riscv64-unknown-elf/include/machine/_default_types.h"
+	.file 4 "/opt/riscv/riscv64-unknown-elf/include/sys/_stdint.h"
+	.file 5 "src/gpio.h"
+	.section	.debug_info,"",@progbits
+.Ldebug_info0:
+	.4byte	0x382
+	.2byte	0x4
+	.4byte	.Ldebug_abbrev0
+	.byte	0x4
+	.byte	0x1
+	.4byte	.LASF30
+	.byte	0xc
+	.4byte	.LASF31
+	.4byte	.LASF32
+	.4byte	.Ldebug_ranges0+0xb0
+	.4byte	0
+	.4byte	.Ldebug_line0
+	.byte	0x2
+	.byte	0x1
+	.byte	0x6
+	.4byte	.LASF0
+	.byte	0x2
+	.byte	0x1
+	.byte	0x8
+	.4byte	.LASF1
+	.byte	0x2
+	.byte	0x2
+	.byte	0x5
+	.4byte	.LASF2
+	.byte	0x2
+	.byte	0x2
+	.byte	0x7
+	.4byte	.LASF3
+	.byte	0x2
+	.byte	0x4
+	.byte	0x5
+	.4byte	.LASF4
+	.byte	0x3
+	.4byte	.LASF9
+	.byte	0x3
+	.byte	0x4f
+	.byte	0x19
+	.4byte	0x54
+	.byte	0x2
+	.byte	0x4
+	.byte	0x7
+	.4byte	.LASF5
+	.byte	0x2
+	.byte	0x8
+	.byte	0x5
+	.4byte	.LASF6
+	.byte	0x2
+	.byte	0x8
+	.byte	0x7
+	.4byte	.LASF7
+	.byte	0x4
+	.byte	0x4
+	.byte	0x5
+	.string	"int"
+	.byte	0x5
+	.4byte	0x69
+	.byte	0x2
+	.byte	0x4
+	.byte	0x7
+	.4byte	.LASF8
+	.byte	0x3
+	.4byte	.LASF10
+	.byte	0x4
+	.byte	0x30
+	.byte	0x14
+	.4byte	0x48
+	.byte	0x6
+	.4byte	0x7c
+	.byte	0x7
+	.byte	0xc
+	.byte	0x5
+	.byte	0x5
+	.byte	0x9
+	.4byte	0xbe
+	.byte	0x8
+	.4byte	.LASF11
+	.byte	0x5
+	.byte	0x7
+	.byte	0x15
+	.4byte	0x88
+	.byte	0
+	.byte	0x8
+	.4byte	.LASF12
+	.byte	0x5
+	.byte	0x8
+	.byte	0x15
+	.4byte	0x88
+	.byte	0x4
+	.byte	0x8
+	.4byte	.LASF13
+	.byte	0x5
+	.byte	0x9
+	.byte	0x15
+	.4byte	0x88
+	.byte	0x8
+	.byte	0
+	.byte	0x3
+	.4byte	.LASF14
+	.byte	0x5
+	.byte	0xa
+	.byte	0x3
+	.4byte	0x8d
+	.byte	0x7
+	.byte	0x10
+	.byte	0x2
+	.byte	0x5
+	.byte	0x9
+	.4byte	0x108
+	.byte	0x8
+	.4byte	.LASF15
+	.byte	0x2
+	.byte	0x7
+	.byte	0x15
+	.4byte	0x88
+	.byte	0
+	.byte	0x8
+	.4byte	.LASF16
+	.byte	0x2
+	.byte	0x8
+	.byte	0x15
+	.4byte	0x88
+	.byte	0x4
+	.byte	0x8
+	.4byte	.LASF17
+	.byte	0x2
+	.byte	0x9
+	.byte	0x15
+	.4byte	0x88
+	.byte	0x8
+	.byte	0x8
+	.4byte	.LASF18
+	.byte	0x2
+	.byte	0xa
+	.byte	0x15
+	.4byte	0x88
+	.byte	0xc
+	.byte	0
+	.byte	0x3
+	.4byte	.LASF19
+	.byte	0x2
+	.byte	0xb
+	.byte	0x3
+	.4byte	0xca
+	.byte	0x9
+	.4byte	.LASF33
+	.byte	0x1
+	.byte	0x29
+	.byte	0x6
+	.4byte	.LFB11
+	.4byte	.LFE11-.LFB11
+	.byte	0x1
+	.byte	0x9c
+	.byte	0xa
+	.4byte	.LASF34
+	.byte	0x1
+	.byte	0x17
+	.byte	0x6
+	.4byte	.LFB10
+	.4byte	.LFE10-.LFB10
+	.byte	0x1
+	.byte	0x9c
+	.4byte	0x20d
+	.byte	0xb
+	.4byte	.LASF20
+	.byte	0x1
+	.byte	0x1b
+	.byte	0xf
+	.4byte	0x70
+	.byte	0x4
+	.byte	0xc
+	.4byte	.LASF21
+	.byte	0x1
+	.byte	0x1c
+	.byte	0xc
+	.4byte	0x70
+	.4byte	0x1e8480
+	.byte	0xd
+	.4byte	.Ldebug_ranges0+0x78
+	.4byte	0x1a9
+	.byte	0xe
+	.string	"i"
+	.byte	0x1
+	.byte	0x1e
+	.byte	0x17
+	.4byte	0x75
+	.4byte	.LLST7
+	.byte	0xf
+	.4byte	.LVL14
+	.4byte	0x20d
+	.4byte	0x184
+	.byte	0x10
+	.byte	0x1
+	.byte	0x5a
+	.byte	0x2
+	.byte	0x78
+	.byte	0
+	.byte	0
+	.byte	0xf
+	.4byte	.LVL15
+	.4byte	0x20d
+	.4byte	0x198
+	.byte	0x10
+	.byte	0x1
+	.byte	0x5a
+	.byte	0x2
+	.byte	0x78
+	.byte	0
+	.byte	0
+	.byte	0x11
+	.4byte	.LVL16
+	.4byte	0x20d
+	.byte	0x10
+	.byte	0x1
+	.byte	0x5a
+	.byte	0x2
+	.byte	0x78
+	.byte	0
+	.byte	0
+	.byte	0
+	.byte	0xd
+	.4byte	.Ldebug_ranges0+0x98
+	.4byte	0x1f9
+	.byte	0xe
+	.string	"i"
+	.byte	0x1
+	.byte	0x22
+	.byte	0x17
+	.4byte	0x75
+	.4byte	.LLST8
+	.byte	0xf
+	.4byte	.LVL17
+	.4byte	0x20d
+	.4byte	0x1d4
+	.byte	0x10
+	.byte	0x1
+	.byte	0x5a
+	.byte	0x2
+	.byte	0x78
+	.byte	0
+	.byte	0
+	.byte	0xf
+	.4byte	.LVL18
+	.4byte	0x20d
+	.4byte	0x1e8
+	.byte	0x10
+	.byte	0x1
+	.byte	0x5a
+	.byte	0x2
+	.byte	0x78
+	.byte	0
+	.byte	0
+	.byte	0x11
+	.4byte	.LVL19
+	.4byte	0x20d
+	.byte	0x10
+	.byte	0x1
+	.byte	0x5a
+	.byte	0x2
+	.byte	0x78
+	.byte	0
+	.byte	0
+	.byte	0
+	.byte	0x11
+	.4byte	.LVL12
+	.4byte	0x258
+	.byte	0x10
+	.byte	0x1
+	.byte	0x5a
+	.byte	0x5
+	.byte	0x3
+	.4byte	.LC0
+	.byte	0
+	.byte	0
+	.byte	0x12
+	.4byte	.LASF22
+	.byte	0x1
+	.byte	0x11
+	.byte	0x6
+	.4byte	.LFB9
+	.4byte	.LFE9-.LFB9
+	.byte	0x1
+	.byte	0x9c
+	.4byte	0x258
+	.byte	0x13
+	.4byte	.LASF24
+	.byte	0x1
+	.byte	0x11
+	.byte	0x15
+	.4byte	0x7c
+	.byte	0x1
+	.byte	0x5a
+	.byte	0x14
+	.4byte	.Ldebug_ranges0+0x48
+	.byte	0xe
+	.string	"i"
+	.byte	0x1
+	.byte	0x12
+	.byte	0xa
+	.4byte	0x69
+	.4byte	.LLST6
+	.byte	0x14
+	.4byte	.Ldebug_ranges0+0x60
+	.byte	0x15
+	.string	"tmp"
+	.byte	0x1
+	.byte	0x13
+	.byte	0x7
+	.4byte	0x69
+	.byte	0
+	.byte	0
+	.byte	0
+	.byte	0x12
+	.4byte	.LASF23
+	.byte	0x1
+	.byte	0xc
+	.byte	0x6
+	.4byte	.LFB8
+	.4byte	.LFE8-.LFB8
+	.byte	0x1
+	.byte	0x9c
+	.4byte	0x2d1
+	.byte	0x16
+	.string	"str"
+	.byte	0x1
+	.byte	0xc
+	.byte	0x19
+	.4byte	0x2d1
+	.4byte	.LLST2
+	.byte	0x17
+	.4byte	0x33f
+	.4byte	.LBB22
+	.4byte	.LBE22-.LBB22
+	.byte	0x1
+	.byte	0xe
+	.byte	0x2
+	.4byte	0x2bf
+	.byte	0x18
+	.4byte	0x34c
+	.4byte	.LLST3
+	.byte	0x18
+	.4byte	0x358
+	.4byte	.LLST4
+	.byte	0x19
+	.4byte	0x36b
+	.4byte	.LBB24
+	.4byte	.Ldebug_ranges0+0x30
+	.byte	0x2
+	.byte	0x1f
+	.byte	0x8
+	.byte	0x18
+	.4byte	0x378
+	.4byte	.LLST5
+	.byte	0
+	.byte	0
+	.byte	0x11
+	.4byte	.LVL5
+	.4byte	0x2e3
+	.byte	0x10
+	.byte	0x1
+	.byte	0x5a
+	.byte	0x3
+	.byte	0xf3
+	.byte	0x1
+	.byte	0x5a
+	.byte	0
+	.byte	0
+	.byte	0x1a
+	.byte	0x4
+	.4byte	0x2de
+	.byte	0x2
+	.byte	0x1
+	.byte	0x8
+	.4byte	.LASF25
+	.byte	0x5
+	.4byte	0x2d7
+	.byte	0x12
+	.4byte	.LASF26
+	.byte	0x1
+	.byte	0x6
+	.byte	0x6
+	.4byte	.LFB7
+	.4byte	.LFE7-.LFB7
+	.byte	0x1
+	.byte	0x9c
+	.4byte	0x33f
+	.byte	0x16
+	.string	"str"
+	.byte	0x1
+	.byte	0x6
+	.byte	0x17
+	.4byte	0x2d1
+	.4byte	.LLST0
+	.byte	0x19
+	.4byte	0x33f
+	.4byte	.LBB10
+	.4byte	.Ldebug_ranges0+0
+	.byte	0x1
+	.byte	0x8
+	.byte	0x3
+	.byte	0x1b
+	.4byte	0x34c
+	.byte	0x1b
+	.4byte	0x358
+	.byte	0x19
+	.4byte	0x36b
+	.4byte	.LBB12
+	.4byte	.Ldebug_ranges0+0x18
+	.byte	0x2
+	.byte	0x1f
+	.byte	0x8
+	.byte	0x18
+	.4byte	0x378
+	.4byte	.LLST1
+	.byte	0
+	.byte	0
+	.byte	0
+	.byte	0x1c
+	.4byte	.LASF28
+	.byte	0x2
+	.byte	0x1e
+	.byte	0xd
+	.byte	0x1
+	.4byte	0x365
+	.byte	0x1d
+	.string	"reg"
+	.byte	0x2
+	.byte	0x1e
+	.byte	0x22
+	.4byte	0x365
+	.byte	0x1e
+	.4byte	.LASF27
+	.byte	0x2
+	.byte	0x1e
+	.byte	0x30
+	.4byte	0x7c
+	.byte	0
+	.byte	0x1a
+	.byte	0x4
+	.4byte	0x108
+	.byte	0x1f
+	.4byte	.LASF29
+	.byte	0x2
+	.byte	0x17
+	.byte	0x11
+	.4byte	0x7c
+	.byte	0x1
+	.byte	0x1d
+	.string	"reg"
+	.byte	0x2
+	.byte	0x17
+	.byte	0x32
+	.4byte	0x365
+	.byte	0
+	.byte	0
+	.section	.debug_abbrev,"",@progbits
+.Ldebug_abbrev0:
+	.byte	0x1
+	.byte	0x11
+	.byte	0x1
+	.byte	0x25
+	.byte	0xe
+	.byte	0x13
+	.byte	0xb
+	.byte	0x3
+	.byte	0xe
+	.byte	0x1b
+	.byte	0xe
+	.byte	0x55
+	.byte	0x17
+	.byte	0x11
+	.byte	0x1
+	.byte	0x10
+	.byte	0x17
+	.byte	0
+	.byte	0
+	.byte	0x2
+	.byte	0x24
+	.byte	0
+	.byte	0xb
+	.byte	0xb
+	.byte	0x3e
+	.byte	0xb
+	.byte	0x3
+	.byte	0xe
+	.byte	0
+	.byte	0
+	.byte	0x3
+	.byte	0x16
+	.byte	0
+	.byte	0x3
+	.byte	0xe
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x49
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x4
+	.byte	0x24
+	.byte	0
+	.byte	0xb
+	.byte	0xb
+	.byte	0x3e
+	.byte	0xb
+	.byte	0x3
+	.byte	0x8
+	.byte	0
+	.byte	0
+	.byte	0x5
+	.byte	0x26
+	.byte	0
+	.byte	0x49
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x6
+	.byte	0x35
+	.byte	0
+	.byte	0x49
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x7
+	.byte	0x13
+	.byte	0x1
+	.byte	0xb
+	.byte	0xb
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x1
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x8
+	.byte	0xd
+	.byte	0
+	.byte	0x3
+	.byte	0xe
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x49
+	.byte	0x13
+	.byte	0x38
+	.byte	0xb
+	.byte	0
+	.byte	0
+	.byte	0x9
+	.byte	0x2e
+	.byte	0
+	.byte	0x3f
+	.byte	0x19
+	.byte	0x3
+	.byte	0xe
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x11
+	.byte	0x1
+	.byte	0x12
+	.byte	0x6
+	.byte	0x40
+	.byte	0x18
+	.byte	0x97,0x42
+	.byte	0x19
+	.byte	0
+	.byte	0
+	.byte	0xa
+	.byte	0x2e
+	.byte	0x1
+	.byte	0x3f
+	.byte	0x19
+	.byte	0x3
+	.byte	0xe
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x11
+	.byte	0x1
+	.byte	0x12
+	.byte	0x6
+	.byte	0x40
+	.byte	0x18
+	.byte	0x97,0x42
+	.byte	0x19
+	.byte	0x1
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0xb
+	.byte	0x34
+	.byte	0
+	.byte	0x3
+	.byte	0xe
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x49
+	.byte	0x13
+	.byte	0x1c
+	.byte	0xb
+	.byte	0
+	.byte	0
+	.byte	0xc
+	.byte	0x34
+	.byte	0
+	.byte	0x3
+	.byte	0xe
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x49
+	.byte	0x13
+	.byte	0x1c
+	.byte	0x6
+	.byte	0
+	.byte	0
+	.byte	0xd
+	.byte	0xb
+	.byte	0x1
+	.byte	0x55
+	.byte	0x17
+	.byte	0x1
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0xe
+	.byte	0x34
+	.byte	0
+	.byte	0x3
+	.byte	0x8
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x49
+	.byte	0x13
+	.byte	0x2
+	.byte	0x17
+	.byte	0
+	.byte	0
+	.byte	0xf
+	.byte	0x89,0x82,0x1
+	.byte	0x1
+	.byte	0x11
+	.byte	0x1
+	.byte	0x31
+	.byte	0x13
+	.byte	0x1
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x10
+	.byte	0x8a,0x82,0x1
+	.byte	0
+	.byte	0x2
+	.byte	0x18
+	.byte	0x91,0x42
+	.byte	0x18
+	.byte	0
+	.byte	0
+	.byte	0x11
+	.byte	0x89,0x82,0x1
+	.byte	0x1
+	.byte	0x11
+	.byte	0x1
+	.byte	0x31
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x12
+	.byte	0x2e
+	.byte	0x1
+	.byte	0x3f
+	.byte	0x19
+	.byte	0x3
+	.byte	0xe
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x27
+	.byte	0x19
+	.byte	0x11
+	.byte	0x1
+	.byte	0x12
+	.byte	0x6
+	.byte	0x40
+	.byte	0x18
+	.byte	0x97,0x42
+	.byte	0x19
+	.byte	0x1
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x13
+	.byte	0x5
+	.byte	0
+	.byte	0x3
+	.byte	0xe
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x49
+	.byte	0x13
+	.byte	0x2
+	.byte	0x18
+	.byte	0
+	.byte	0
+	.byte	0x14
+	.byte	0xb
+	.byte	0x1
+	.byte	0x55
+	.byte	0x17
+	.byte	0
+	.byte	0
+	.byte	0x15
+	.byte	0x34
+	.byte	0
+	.byte	0x3
+	.byte	0x8
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x49
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x16
+	.byte	0x5
+	.byte	0
+	.byte	0x3
+	.byte	0x8
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x49
+	.byte	0x13
+	.byte	0x2
+	.byte	0x17
+	.byte	0
+	.byte	0
+	.byte	0x17
+	.byte	0x1d
+	.byte	0x1
+	.byte	0x31
+	.byte	0x13
+	.byte	0x11
+	.byte	0x1
+	.byte	0x12
+	.byte	0x6
+	.byte	0x58
+	.byte	0xb
+	.byte	0x59
+	.byte	0xb
+	.byte	0x57
+	.byte	0xb
+	.byte	0x1
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x18
+	.byte	0x5
+	.byte	0
+	.byte	0x31
+	.byte	0x13
+	.byte	0x2
+	.byte	0x17
+	.byte	0
+	.byte	0
+	.byte	0x19
+	.byte	0x1d
+	.byte	0x1
+	.byte	0x31
+	.byte	0x13
+	.byte	0x52
+	.byte	0x1
+	.byte	0x55
+	.byte	0x17
+	.byte	0x58
+	.byte	0xb
+	.byte	0x59
+	.byte	0xb
+	.byte	0x57
+	.byte	0xb
+	.byte	0
+	.byte	0
+	.byte	0x1a
+	.byte	0xf
+	.byte	0
+	.byte	0xb
+	.byte	0xb
+	.byte	0x49
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x1b
+	.byte	0x5
+	.byte	0
+	.byte	0x31
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x1c
+	.byte	0x2e
+	.byte	0x1
+	.byte	0x3
+	.byte	0xe
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x27
+	.byte	0x19
+	.byte	0x20
+	.byte	0xb
+	.byte	0x1
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x1d
+	.byte	0x5
+	.byte	0
+	.byte	0x3
+	.byte	0x8
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x49
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x1e
+	.byte	0x5
+	.byte	0
+	.byte	0x3
+	.byte	0xe
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x49
+	.byte	0x13
+	.byte	0
+	.byte	0
+	.byte	0x1f
+	.byte	0x2e
+	.byte	0x1
+	.byte	0x3
+	.byte	0xe
+	.byte	0x3a
+	.byte	0xb
+	.byte	0x3b
+	.byte	0xb
+	.byte	0x39
+	.byte	0xb
+	.byte	0x27
+	.byte	0x19
+	.byte	0x49
+	.byte	0x13
+	.byte	0x20
+	.byte	0xb
+	.byte	0
+	.byte	0
+	.byte	0
+	.section	.debug_loc,"",@progbits
+.Ldebug_loc0:
+.LLST7:
+	.4byte	.LVL13
+	.4byte	.LVL14
+	.2byte	0x2
+	.byte	0x30
+	.byte	0x9f
+	.4byte	.LVL14
+	.4byte	.LVL15
+	.2byte	0x2
+	.byte	0x31
+	.byte	0x9f
+	.4byte	.LVL15
+	.4byte	.LVL16
+	.2byte	0x2
+	.byte	0x32
+	.byte	0x9f
+	.4byte	.LVL16
+	.4byte	.LFE10
+	.2byte	0x2
+	.byte	0x33
+	.byte	0x9f
+	.4byte	0
+	.4byte	0
+.LLST8:
+	.4byte	.LVL16
+	.4byte	.LVL17
+	.2byte	0x2
+	.byte	0x30
+	.byte	0x9f
+	.4byte	.LVL17
+	.4byte	.LVL18
+	.2byte	0x2
+	.byte	0x31
+	.byte	0x9f
+	.4byte	.LVL18
+	.4byte	.LVL19
+	.2byte	0x2
+	.byte	0x32
+	.byte	0x9f
+	.4byte	.LVL19
+	.4byte	.LFE10
+	.2byte	0x2
+	.byte	0x33
+	.byte	0x9f
+	.4byte	0
+	.4byte	0
+.LLST6:
+	.4byte	.LVL9
+	.4byte	.LVL10
+	.2byte	0x2
+	.byte	0x30
+	.byte	0x9f
+	.4byte	.LVL10
+	.4byte	.LFE9
+	.2byte	0x1
+	.byte	0x5f
+	.4byte	0
+	.4byte	0
+.LLST2:
+	.4byte	.LVL4
+	.4byte	.LVL5-1
+	.2byte	0x1
+	.byte	0x5a
+	.4byte	.LVL5-1
+	.4byte	.LFE8
+	.2byte	0x4
+	.byte	0xf3
+	.byte	0x1
+	.byte	0x5a
+	.byte	0x9f
+	.4byte	0
+	.4byte	0
+.LLST3:
+	.4byte	.LVL5
+	.4byte	.LVL8
+	.2byte	0x6
+	.byte	0x9e
+	.byte	0x4
+	.4byte	0xf0010000
+	.4byte	0
+	.4byte	0
+.LLST4:
+	.4byte	.LVL5
+	.4byte	.LVL8
+	.2byte	0x2
+	.byte	0x3a
+	.byte	0x9f
+	.4byte	0
+	.4byte	0
+.LLST5:
+	.4byte	.LVL6
+	.4byte	.LVL7
+	.2byte	0x6
+	.byte	0x9e
+	.byte	0x4
+	.4byte	0xf0010000
+	.4byte	0
+	.4byte	0
+.LLST0:
+	.4byte	.LVL0
+	.4byte	.LVL3
+	.2byte	0x1
+	.byte	0x5a
+	.4byte	.LVL3
+	.4byte	.LFE7
+	.2byte	0x1
+	.byte	0x5a
+	.4byte	0
+	.4byte	0
+.LLST1:
+	.4byte	.LVL1
+	.4byte	.LVL2
+	.2byte	0x6
+	.byte	0x9e
+	.byte	0x4
+	.4byte	0xf0010000
+	.4byte	0
+	.4byte	0
+	.section	.debug_aranges,"",@progbits
+	.4byte	0x24
+	.2byte	0x2
+	.4byte	.Ldebug_info0
+	.byte	0x4
+	.byte	0
+	.2byte	0
+	.2byte	0
+	.4byte	.Ltext0
+	.4byte	.Letext0-.Ltext0
+	.4byte	.LFB10
+	.4byte	.LFE10-.LFB10
+	.4byte	0
+	.4byte	0
+	.section	.debug_ranges,"",@progbits
+.Ldebug_ranges0:
+	.4byte	.LBB10
+	.4byte	.LBE10
+	.4byte	.LBB17
+	.4byte	.LBE17
+	.4byte	0
+	.4byte	0
+	.4byte	.LBB12
+	.4byte	.LBE12
+	.4byte	.LBB15
+	.4byte	.LBE15
+	.4byte	0
+	.4byte	0
+	.4byte	.LBB24
+	.4byte	.LBE24
+	.4byte	.LBB27
+	.4byte	.LBE27
+	.4byte	0
+	.4byte	0
+	.4byte	.LBB28
+	.4byte	.LBE28
+	.4byte	.LBB31
+	.4byte	.LBE31
+	.4byte	0
+	.4byte	0
+	.4byte	.LBB29
+	.4byte	.LBE29
+	.4byte	.LBB30
+	.4byte	.LBE30
+	.4byte	0
+	.4byte	0
+	.4byte	.LBB32
+	.4byte	.LBE32
+	.4byte	.LBB33
+	.4byte	.LBE33
+	.4byte	.LBB35
+	.4byte	.LBE35
+	.4byte	0
+	.4byte	0
+	.4byte	.LBB34
+	.4byte	.LBE34
+	.4byte	.LBB36
+	.4byte	.LBE36
+	.4byte	0
+	.4byte	0
+	.4byte	.Ltext0
+	.4byte	.Letext0
+	.4byte	.LFB10
+	.4byte	.LFE10
+	.4byte	0
+	.4byte	0
+	.section	.debug_line,"",@progbits
+.Ldebug_line0:
+	.section	.debug_str,"MS",@progbits,1
+.LASF14:
+	.string	"Gpio_Reg"
+.LASF20:
+	.string	"nleds"
+.LASF28:
+	.string	"uart_write"
+.LASF2:
+	.string	"short int"
+.LASF17:
+	.string	"CLOCK_DIVIDER"
+.LASF34:
+	.string	"main"
+.LASF9:
+	.string	"__uint32_t"
+.LASF22:
+	.string	"delay"
+.LASF24:
+	.string	"loops"
+.LASF33:
+	.string	"irqCallback"
+.LASF6:
+	.string	"long long int"
+.LASF16:
+	.string	"STATUS"
+.LASF4:
+	.string	"long int"
+.LASF15:
+	.string	"DATA"
+.LASF1:
+	.string	"unsigned char"
+.LASF18:
+	.string	"FRAME_CONFIG"
+.LASF29:
+	.string	"uart_writeAvailability"
+.LASF0:
+	.string	"signed char"
+.LASF7:
+	.string	"long long unsigned int"
+.LASF26:
+	.string	"print"
+.LASF10:
+	.string	"uint32_t"
+.LASF8:
+	.string	"unsigned int"
+.LASF3:
+	.string	"short unsigned int"
+.LASF25:
+	.string	"char"
+.LASF23:
+	.string	"println"
+.LASF12:
+	.string	"OUTPUT"
+.LASF27:
+	.string	"data"
+.LASF21:
+	.string	"nloops"
+.LASF5:
+	.string	"long unsigned int"
+.LASF13:
+	.string	"OUTPUT_ENABLE"
+.LASF30:
+	.string	"GNU C17 8.3.0 -march=rv32i -mabi=ilp32 -g -Os -fstrict-volatile-bitfields -fno-strict-aliasing"
+.LASF32:
+	.string	"/home/moss/Documents/ulx3s-vexriscv-helloworld/vexriscv/src/main/c/murax/hello_world"
+.LASF11:
+	.string	"INPUT"
+.LASF19:
+	.string	"Uart_Reg"
+.LASF31:
+	.string	"src/main.c"
+	.ident	"GCC: (SiFive GCC 8.3.0-2019.08.0) 8.3.0"

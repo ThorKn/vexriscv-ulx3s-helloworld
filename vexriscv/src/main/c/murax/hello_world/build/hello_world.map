@@ -1,0 +1,159 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x0000000080000000 0x0000000000000800 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD build/src/main.o
+LOAD build/src/crt.o
+LOAD /opt/riscv/bin/../lib/gcc/riscv64-unknown-elf/8.3.0/rv32i/ilp32/libgcc.a
+                0x0000000000000100                _stack_size = DEFINED (_stack_size)?_stack_size:0x100
+                0x0000000000000000                _heap_size = DEFINED (_heap_size)?_heap_size:0x0
+
+._vector        0x0000000080000000      0x134
+ *crt.o(.start_jump)
+ .start_jump    0x0000000080000000       0x10 build/src/crt.o
+                0x0000000080000000                crtStart
+ *crt.o(.text)
+ *fill*         0x0000000080000010       0x10 
+ .text          0x0000000080000020      0x114 build/src/crt.o
+                0x0000000080000020                trap_entry
+
+._user_heap     0x0000000080000134        0x4
+                0x0000000080000138                . = ALIGN (0x8)
+ *fill*         0x0000000080000134        0x4 
+                [!provide]                        PROVIDE (end = .)
+                [!provide]                        PROVIDE (_end = .)
+                [!provide]                        PROVIDE (_heap_start = .)
+                0x0000000080000138                . = (. + _heap_size)
+                0x0000000080000138                . = ALIGN (0x8)
+                [!provide]                        PROVIDE (_heap_end = .)
+
+._stack         0x0000000080000138      0x108
+                0x0000000080000140                . = ALIGN (0x10)
+ *fill*         0x0000000080000138        0x8 
+                [!provide]                        PROVIDE (_stack_end = .)
+                0x0000000080000240                . = (. + _stack_size)
+ *fill*         0x0000000080000140      0x100 
+                0x0000000080000240                . = ALIGN (0x10)
+                0x0000000080000240                PROVIDE (_stack_start = .)
+
+.data           0x0000000080000240       0x18
+ *(.rdata)
+ *(.rodata .rodata.*)
+ .rodata.str1.4
+                0x0000000080000240       0x18 build/src/main.o
+                                         0x17 (size before relaxing)
+ *(.gnu.linkonce.r.*)
+ *(.data .data.*)
+ .data          0x0000000080000258        0x0 build/src/main.o
+ .data          0x0000000080000258        0x0 build/src/crt.o
+ *(.gnu.linkonce.d.*)
+                0x0000000080000258                . = ALIGN (0x8)
+                0x0000000080000a58                PROVIDE (__global_pointer$ = (. + 0x800))
+ *(.sdata .sdata.*)
+ *(.gnu.linkonce.s.*)
+                0x0000000080000258                . = ALIGN (0x8)
+ *(.srodata.cst16)
+ *(.srodata.cst8)
+ *(.srodata.cst4)
+ *(.srodata.cst2)
+ *(.srodata .srodata.*)
+
+.bss            0x0000000080000258        0x0
+                0x0000000080000258                . = ALIGN (0x4)
+                0x0000000080000258                _bss_start = .
+ *(.sbss*)
+ *(.gnu.linkonce.sb.*)
+ *(.bss .bss.*)
+ .bss           0x0000000080000258        0x0 build/src/main.o
+ .bss           0x0000000080000258        0x0 build/src/crt.o
+ *(.gnu.linkonce.b.*)
+ *(COMMON)
+                0x0000000080000258                . = ALIGN (0x4)
+                0x0000000080000258                _bss_end = .
+
+.rodata
+ *(.rdata)
+ *(.rodata .rodata.*)
+ *(.gnu.linkonce.r.*)
+
+.noinit         0x0000000080000258        0x0
+                0x0000000080000258                . = ALIGN (0x4)
+ *(.noinit .noinit.*)
+                0x0000000080000258                . = ALIGN (0x4)
+
+.memory         0x0000000080000258       0x80
+ *(.text)
+ .text          0x0000000080000258       0x80 build/src/main.o
+                0x0000000080000258                print
+                0x0000000080000284                println
+                0x00000000800002b8                delay
+                0x00000000800002d4                irqCallback
+                0x00000000800002d8                end = .
+
+.text.startup   0x00000000800002d8       0xa8
+ .text.startup  0x00000000800002d8       0xa8 build/src/main.o
+                0x00000000800002d8                main
+
+.rela.dyn       0x0000000080000380        0x0
+ .rela.text     0x0000000080000380        0x0 build/src/main.o
+
+.ctors          0x0000000080000380        0x0
+                0x0000000080000380                . = ALIGN (0x4)
+                0x0000000080000380                _ctors_start = .
+ *(.init_array*)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+                0x0000000080000380                . = ALIGN (0x4)
+                0x0000000080000380                _ctors_end = .
+                [!provide]                        PROVIDE (END_OF_SW_IMAGE = .)
+OUTPUT(build/hello_world.elf elf32-littleriscv)
+
+.debug_info     0x0000000000000000      0x3a8
+ .debug_info    0x0000000000000000      0x386 build/src/main.o
+ .debug_info    0x0000000000000386       0x22 build/src/crt.o
+
+.debug_abbrev   0x0000000000000000      0x1e0
+ .debug_abbrev  0x0000000000000000      0x1ce build/src/main.o
+ .debug_abbrev  0x00000000000001ce       0x12 build/src/crt.o
+
+.debug_loc      0x0000000000000000      0x12a
+ .debug_loc     0x0000000000000000      0x12a build/src/main.o
+
+.debug_aranges  0x0000000000000000       0x50
+ .debug_aranges
+                0x0000000000000000       0x28 build/src/main.o
+ .debug_aranges
+                0x0000000000000028       0x28 build/src/crt.o
+
+.debug_ranges   0x0000000000000000       0xe8
+ .debug_ranges  0x0000000000000000       0xc8 build/src/main.o
+ .debug_ranges  0x00000000000000c8       0x20 build/src/crt.o
+
+.debug_line     0x0000000000000000      0x56a
+ .debug_line    0x0000000000000000      0x3a8 build/src/main.o
+ .debug_line    0x00000000000003a8      0x1c2 build/src/crt.o
+
+.debug_str      0x0000000000000000      0x1dd
+ .debug_str     0x0000000000000000      0x1c7 build/src/main.o
+                                        0x20f (size before relaxing)
+ .debug_str     0x00000000000001c7       0x16 build/src/crt.o
+                                         0x6b (size before relaxing)
+
+.comment        0x0000000000000000       0x28
+ .comment       0x0000000000000000       0x28 build/src/main.o
+                                         0x29 (size before relaxing)
+
+.riscv.attributes
+                0x0000000000000000       0x1c
+ .riscv.attributes
+                0x0000000000000000       0x1c build/src/main.o
+ .riscv.attributes
+                0x000000000000001c       0x1a build/src/crt.o
+
+.debug_frame    0x0000000000000000       0x80
+ .debug_frame   0x0000000000000000       0x80 build/src/main.o
